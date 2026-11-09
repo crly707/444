@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Felices 3 meses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Pacifico&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#ff7eb3; --pink-d:#e0518a; --pink-dd:#c43a74; --pink-l:#ffd6e7; --pink-p:#ffe9f2;
+  --green:#2fb58a; --green-l:#c8f1de; --ink:#3b3358; --paper:#fffafc;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  display:flex;align-items:center;justify-content:center;
+  background:
+    radial-gradient(circle at 15% 20%,var(--pink-l) 0,transparent 42%),
+    radial-gradient(circle at 85% 85%,var(--pink-p) 0,transparent 45%),
+    radial-gradient(circle at 85% 10%,var(--green-l) 0,transparent 32%),
+    #fff4f9;
+  font-family:'Nunito',system-ui,sans-serif;color:var(--ink);
+  overflow:hidden;perspective:1600px;
+  padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+}
+.book{position:relative;width:min(84vw,380px);height:min(80vh,610px);transform-style:preserve-3d;margin-left:18px}
+/* Tapa trasera, lomo, canto de hojas, cinta y sombra */
+.book::before{
+  content:"";position:absolute;inset:-9px -11px -9px -8px;border-radius:10px 28px 28px 10px;
+  background:linear-gradient(135deg,var(--pink),var(--pink-d));
+  box-shadow:0 22px 38px rgba(196,58,116,.3);
+}
+.book::after{
+  content:"";position:absolute;left:6%;right:6%;bottom:-44px;height:26px;
+  background:radial-gradient(ellipse at center,rgba(196,58,116,.28),transparent 70%);
+}
+.spine{
+  position:absolute;left:-20px;top:-9px;bottom:-9px;width:26px;border-radius:12px 0 0 12px;
+  background:linear-gradient(90deg,var(--pink-dd),var(--pink-d) 45%,var(--pink) 80%,var(--pink-d));
+  box-shadow:inset -2px 0 3px rgba(255,255,255,.35),inset 2px 0 4px rgba(0,0,0,.2);
+}
+.spine::before,.spine::after{content:"";position:absolute;left:5px;right:5px;height:2px;background:rgba(255,233,242,.7);border-radius:2px}
+.spine::before{top:14%;box-shadow:0 5px 0 rgba(255,233,242,.5)}
+.spine::after{bottom:14%;box-shadow:0 -5px 0 rgba(255,233,242,.5)}
+.stack{
+  position:absolute;inset:0;border-radius:4px 20px 20px 4px;background:var(--paper);
+  box-shadow:3px 3px 0 #fff,4px 4px 0 #f6c9dc,6px 6px 0 #fff,7px 7px 0 #f6c9dc,9px 9px 0 #fff,10px 10px 0 #f0b9d0;
+}
+.ribbon{
+  position:absolute;left:62%;bottom:-48px;width:18px;height:70px;
+  background:linear-gradient(90deg,var(--pink-d),var(--pink));
+  clip-path:polygon(0 0,100% 0,100% 100%,50% 82%,0 100%);
+}
+.page,.cover{
+  position:absolute;inset:0;border-radius:4px 20px 20px 4px;
+  transform-origin:left center;
+  transition:transform 1.1s cubic-bezier(.6,.05,.25,1),opacity .3s;
+}
+/* ---------- Páginas ---------- */
+.page{
+  background:linear-gradient(90deg,rgba(255,126,179,.16),transparent 9%),var(--paper);
+  padding:26px 22px 16px;overflow:hidden;
+  border:3px solid var(--pink);display:flex;flex-direction:column;
+  box-shadow:inset 8px 0 14px -6px rgba(196,58,116,.25);
+}
+.page::before{
+  content:"";position:absolute;inset:8px 8px 8px 14px;border:2px solid var(--pink-p);
+  border-radius:3px 14px 14px 3px;pointer-events:none;
+}
+.nav{display:flex;justify-content:center;gap:10px;margin-top:6px;position:relative;z-index:2}
+.nav button{
+  border:0;background:var(--pink-l);color:var(--ink);
+  font:800 13px 'Nunito',sans-serif;padding:8px 16px;border-radius:99px;cursor:pointer;
+}
+.nav button.main{background:var(--pink);color:#fff}
+button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+
+/* Página 1: carta */
+.letter h2{
+  font-family:'Pacifico',cursive;font-weight:400;font-size:24px;line-height:1.3;
+  color:var(--pink-d);text-align:center;margin:6px 6px 12px;
+}
+.scroll{overflow-y:auto;flex:1;padding:2px 8px 6px;scrollbar-width:thin;scrollbar-color:var(--pink-l) transparent}
+.scroll p{font-size:14.5px;line-height:1.6;font-weight:600;margin-bottom:11px}
+.scroll p:last-child{font-weight:800;color:var(--pink-d);text-align:center;margin-top:4px}
+
+/* Página 2: 10 cosas */
+.title{text-align:center;font-family:'Bowlby One','Arial Black',Impact,sans-serif;line-height:.9;text-transform:uppercase;margin:6px 0 10px}
+.title .n{font-size:62px;color:var(--pink);text-shadow:3px 3px 0 var(--pink-dd),6px 6px 0 var(--green-l);display:inline-block;transform:rotate(-4deg)}
+.title .s{display:block;font-size:17px;color:var(--green);letter-spacing:1px;margin-top:2px}
+.title .l{display:block;font-size:40px;color:var(--pink-d);text-shadow:2px 2px 0 var(--pink-l);transform:rotate(2deg)}
+.title .a{display:block;font-size:24px;color:var(--green);margin-top:2px;transform:rotate(-1.5deg)}
+ol{list-style:none;overflow-y:auto;flex:1;padding:2px 6px 6px;scrollbar-width:thin;scrollbar-color:var(--pink-l) transparent}
+li{
+  display:flex;align-items:center;gap:10px;padding:7px 8px;margin-bottom:4px;border-radius:14px;
+  cursor:pointer;font-weight:800;font-size:14px;line-height:1.3;transition:background .25s,transform .2s;
+}
+li:hover,li.on{background:var(--pink-p)}
+li.on{box-shadow:inset 0 0 0 2px var(--pink-l)}
+li:active{transform:scale(.97)}
+li .b{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:#fff;font-family:'Bowlby One',sans-serif;font-size:12px}
+li:nth-child(2n+1) .b{background:var(--pink)}
+li:nth-child(2n) .b{background:var(--green)}
+li .t{flex:1}
+
+/* ---------- Portada ---------- */
+.cover{
+  border:3px solid var(--pink-dd);width:100%;cursor:pointer;
+  background:
+    radial-gradient(circle at 20% 12%,#ffd0e4 0,transparent 45%),
+    radial-gradient(circle at 85% 92%,#a9ebd0 0,transparent 50%),
+    linear-gradient(160deg,#ff8fbd,#ff9ec6 55%,#8fe0c0);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:#fff;text-align:center;padding:30px 26px;font-family:inherit;
+  box-shadow:inset 10px 0 12px -6px rgba(120,20,70,.35),inset -2px -2px 6px rgba(255,255,255,.3);
+}
+.cover::before{content:"";position:absolute;inset:12px 12px 12px 20px;border:2px solid var(--pink-p);border-radius:3px 14px 14px 3px;box-shadow:0 0 0 5px rgba(255,255,255,.18)}
+.cover::after{content:"";position:absolute;left:12px;top:0;bottom:0;width:3px;background:rgba(120,20,70,.25);box-shadow:2px 0 0 rgba(255,255,255,.4)}
+.cover h1{font-family:'Pacifico',cursive;font-weight:400;line-height:1.15;text-shadow:0 3px 0 rgba(150,30,90,.3)}
+.cover h1 .a{display:block;font-size:34px}
+.cover h1 .m{display:block;font-size:92px;line-height:1;margin:2px 0}
+.cover h1 .b{display:block;font-size:32px}
+.cover .tap{margin-top:22px;font-weight:800;font-size:14px;background:rgba(255,255,255,.3);padding:8px 16px;border-radius:99px;animation:beat 1.6s ease-in-out infinite}
+@keyframes beat{50%{transform:scale(1.08)}}
+
+/* Pasar páginas */
+.book.open .cover,.book.next #p1{transform:rotateY(-160deg);opacity:0;pointer-events:none;transition:transform 1.1s cubic-bezier(.6,.05,.25,1),opacity .4s .8s}
+@media (prefers-reduced-motion:reduce){
+  .cover .tap{animation:none}
+  .page,.cover{transition:opacity .3s}
+  .book.open .cover,.book.next #p1{transform:none;transition:opacity .3s}
+}
+</style>
+</head>
+<body>
+
+<main class="book" id="book">
+  <div class="spine" aria-hidden="true"></div>
+  <div class="ribbon" aria-hidden="true"></div>
+  <div class="stack" aria-hidden="true"></div>
+
+  <!-- Página 2 (última) -->
+  <section class="page" id="p2" aria-label="10 things I love about you">
+    <h2 class="title" aria-label="10 Things I Love About You">
+      <span class="n">10</span>
+      <span class="s">Things I</span>
+      <span class="l">Love</span>
+      <span class="a">About You</span>
+    </h2>
+    <ol id="list"></ol>
+    <div class="nav"><button id="prev">Página anterior</button></div>
+  </section>
+
+  <!-- Página 1 -->
+  <section class="page letter" id="p1" aria-label="Carta">
+    <h2>Al amor y a ti los conocí el mismo día</h2>
+    <div class="scroll">
+      <p>Gracias de corazón por haber aparecido en mi vida, mi amor. No sabía que me iba a encariñar tanto con alguien en abril, pero, como dicen, «abril es la mano que busca otra mano».</p>
+      <p>Te amo más allá de lo que pueda expresarte cada día. Quiero y deseo poder seguir cumpliendo meses al lado de la chica más bonita de este mundo. Estar lejos de ti cuesta, porque no hay día en que no desee poder abrazarte, acariciar tu pelo, hacerte reír o besar tus manos.</p>
+      <p>Los días en los que podemos pasarlos juntas son los mejores. Estoy esperando a que lleguen las vacaciones de Navidad, las de Semana Santa, el verano, pero sé que habrá un día en el que no tenga que esperar a que sean vacaciones para poder pasar tiempo contigo.</p>
+      <p>Te quiero y te amo mucho, preciosa.</p>
+    </div>
+    <div class="nav">
+      <button id="toCover">Portada</button>
+      <button class="main" id="toNext">Siguiente página</button>
+    </div>
+  </section>
+
+  <!-- Portada -->
+  <button class="cover" id="cover" aria-label="Abrir el libro">
+    <h1><span class="a">Felices</span><span class="m">3</span><span class="b">meses mi princesa</span></h1>
+    <div class="tap">toca para abrir</div>
+  </button>
+</main>
+
+<script>
+const book=document.getElementById('book');
+const $=id=>document.getElementById(id);
+$('cover').onclick=()=>book.classList.add('open');
+$('toCover').onclick=()=>book.classList.remove('open');
+$('toNext').onclick=()=>book.classList.add('next');
+$('prev').onclick=()=>book.classList.remove('next');
+
+const motivos=[
+  "Amo tu sonrisa",
+  "Amo cómo consigues hacerme sentir cerca de ti a pesar de los kilómetros que nos separan",
+  "Amo tu voz",
+  "Amo tu manera de expresarte",
+  "Amo cuando me cuentas tu día",
+  "Amo tu contagiosa risa",
+  "Amo imaginar todas las cosas que algún día podremos hacer",
+  "Amo lo graciosa que eres",
+  "Amo lo auténtica que eres",
+  "Amo que seas tú"
+];
+const ol=$('list');
+motivos.forEach((m,i)=>{
+  const li=document.createElement('li');
+  li.innerHTML='<span class="b">'+(i+1)+'</span><span class="t"></span>';
+  li.querySelector('.t').textContent=m;
+  li.onclick=()=>li.classList.toggle('on');
+  ol.appendChild(li);
+});
+</script>
+</body>
+</html>
